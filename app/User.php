@@ -33,5 +33,9 @@ class User extends Authenticatable
       return $this->hasMany('jobcloud\Job');
     }
 
+    public function jobconnection(){
+      return $this->hasMany('jobcloud\Job_Connection');
+    }
+
 
 }

@@ -10,8 +10,7 @@
 	 	// Get cities by IP
 		$geobytes = new geocoding;
 		$cities = $geobytes->getNearbyCitiesByIP();
-
-		array_unshift($cities, 'All cities');
+		$categories->prepend('All Categories', 0);
 	 ?>
 
 	 <!-- Start intro section -->
@@ -26,7 +25,7 @@
 	          <div class="advanced-search">
 				{{ csrf_field() }}
   	            {!! Form::open(array('url' => '/jobs/search', 'class' => 'search-form')) !!}
-	              <div class="col-md-4 col-sm-6 search-col">
+	              <div class="col-md-3 col-sm-12 search-col">
 	                <div class="input-group-addon search-category-container">
 	                  <label class="styled-select">
 						<div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
@@ -35,16 +34,22 @@
 	                  </label>
 	                </div>
 	              </div>
-	              <div class="col-md-4 col-sm-6 search-col">
-					<div class="input-group-addon search-category-container">
-						<label class="styled-select location-select">
-							<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-								{!! Form::select('city', ($cities), null, ['class' => 'dropdown-product selectpicker']) !!}
-							</div>
-						</label>
+		             <div class="col-md-4 col-sm-12 search-col">
+						<div class="input-group-addon search-category-container">
+							<label class="styled-select location-select">
+								<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+									<select class="dropdown-product selectpicker" name="city" id="city">
+										<option value="0">All Cities</option>
+										@foreach($cities as $city)
+											<option value="{{$city}}">{{$city}}</option>
+										@endforeach
+									</select>
+								</div>
+							</label>
+						</div>
 					</div>
-	              </div>
-	              <div class="col-md-4 col-sm-6 search-col">
+
+	              <div class="col-md-4 col-sm-12 search-col">
 					{!! Form::submit('Search', array('class'=>'btn btn-common btn-search btn-block'))!!}
 	              </div>
 	             {!! Form::close() !!}
@@ -169,7 +174,7 @@
 							 </span>
 						 </div>
 						 <div class="desc">
-							 <h3 class="counter">0</h3>
+							 <h3 class="counter">{{$job_count}}</h3>
 							 <p>Regular Ads</p>
 						 </div>
 					 </div>
@@ -182,8 +187,8 @@
 							 </span>
 						 </div>
 						 <div class="desc">
-							 <h3 class="counter">0</h3>
-							 <p>Locations</p>
+							 <h3 class="counter">{{$city_count}}</h3>
+							 <p>Cities</p>
 						 </div>
 					 </div>
 				 </div>
@@ -195,7 +200,7 @@
 							 </span>
 						 </div>
 						 <div class="desc">
-							 <h3 class="counter">1</h3>
+							 <h3 class="counter">{{$user_count}}</h3>
 							 <p>Regular Members</p>
 						 </div>
 					 </div>

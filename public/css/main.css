@@ -4,8 +4,159 @@
    Gobal Styles
    ========================================================================== */
 /* ==========================================================================
-   Google Font Loader
+   PRELOADER
    ========================================================================== */
+
+   body { height: 100%; overflow: hidden; }
+
+.no-js #loading-screen,
+.no-js #pulsing-circle-container,
+.no-js #pulsing-circle { display: none;  }
+
+#loading-fallback { display: none; }
+
+.no-cssanimations #pulsing-circle { background-color: none; }
+.no-cssanimations #loading-fallback { display: block; }
+
+#loading-screen {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+
+#pulsing-circle-container {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+}
+
+#pulsing-circle {
+  width: 100%;
+  height: 100%;
+  margin: 100px auto;
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes scaleout {
+  0% { -webkit-transform: scale(0.0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+   .sk-folding-cube {
+     margin: 20px auto;
+     width: 40px;
+     height: 40px;
+     position: relative;
+     -webkit-transform: rotateZ(45deg);
+             transform: rotateZ(45deg);
+   }
+
+   .sk-folding-cube .sk-cube {
+     float: left;
+     width: 50%;
+     height: 50%;
+     position: relative;
+     -webkit-transform: scale(1.1);
+         -ms-transform: scale(1.1);
+             transform: scale(1.1);
+   }
+   .sk-folding-cube .sk-cube:before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: #333;
+     -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+             animation: sk-foldCubeAngle 2.4s infinite linear both;
+     -webkit-transform-origin: 100% 100%;
+         -ms-transform-origin: 100% 100%;
+             transform-origin: 100% 100%;
+   }
+   .sk-folding-cube .sk-cube2 {
+     -webkit-transform: scale(1.1) rotateZ(90deg);
+             transform: scale(1.1) rotateZ(90deg);
+   }
+   .sk-folding-cube .sk-cube3 {
+     -webkit-transform: scale(1.1) rotateZ(180deg);
+             transform: scale(1.1) rotateZ(180deg);
+   }
+   .sk-folding-cube .sk-cube4 {
+     -webkit-transform: scale(1.1) rotateZ(270deg);
+             transform: scale(1.1) rotateZ(270deg);
+   }
+   .sk-folding-cube .sk-cube2:before {
+     -webkit-animation-delay: 0.2s;
+             animation-delay: 0.2s;
+   }
+   .sk-folding-cube .sk-cube3:before {
+     -webkit-animation-delay: 0.4s;
+             animation-delay: 0.4s;
+   }
+   .sk-folding-cube .sk-cube4:before {
+     -webkit-animation-delay: 0.6s;
+             animation-delay: 0.6s;
+   }
+   @-webkit-keyframes sk-foldCubeAngle {
+     0%, 10% {
+       -webkit-transform: perspective(140px) rotateX(-180deg);
+               transform: perspective(140px) rotateX(-180deg);
+       opacity: 0;
+     } 25%, 75% {
+       -webkit-transform: perspective(140px) rotateX(0deg);
+               transform: perspective(140px) rotateX(0deg);
+       opacity: 1;
+     } 90%, 100% {
+       -webkit-transform: perspective(140px) rotateY(180deg);
+               transform: perspective(140px) rotateY(180deg);
+       opacity: 0;
+     }
+   }
+
+   @keyframes sk-foldCubeAngle {
+     0%, 10% {
+       -webkit-transform: perspective(140px) rotateX(-180deg);
+               transform: perspective(140px) rotateX(-180deg);
+       opacity: 0;
+     } 25%, 75% {
+       -webkit-transform: perspective(140px) rotateX(0deg);
+               transform: perspective(140px) rotateX(0deg);
+       opacity: 1;
+     } 90%, 100% {
+       -webkit-transform: perspective(140px) rotateY(180deg);
+               transform: perspective(140px) rotateY(180deg);
+       opacity: 0;
+     }
+   }
 /* ==========================================================================
    Common Styles
    ========================================================================== */
@@ -377,7 +528,7 @@ select.form-control:focus {
 .navmenu,
 .navbar-offcanvas {
   width: 180px;
-  z-index: 99999;
+  z-index: 9999;
 }
 .navmenu-default,
 .navbar-default .navbar-offcanvas {
@@ -622,7 +773,7 @@ nav#menu span.fa.fa-bars:hover {
 }
 .search-bar .btn-group.bootstrap-select.dropdown-product.open ul.dropdown-menu.inner {
   display: block;
-  z-index: 9999;
+  z-index: 999;
 }
 .search-bar .open .dropdown-menu {
   margin-top: 0;
@@ -645,7 +796,7 @@ nav#menu span.fa.fa-bars:hover {
   background: #fff;
 }
 .input-group-addon {
-  padding: 0!important;
+  padding: 0px 0px 10px 0px !important;
 }
 .styled-select select {
   background: transparent;
@@ -667,7 +818,7 @@ nav#menu span.fa.fa-bars:hover {
   right: 0;
   padding: 15px;
   position: absolute;
-  z-index: 9999;
+  z-index: 999;
   cursor: pointer;
 }
 .styled-select .bs-caret {
@@ -675,6 +826,9 @@ nav#menu span.fa.fa-bars:hover {
 }
 .location-select:before {
   content: "\f278";
+}
+.hire-select:before {
+  content: "\f0f2";
 }
 .search-category select {
   padding: 12px;
@@ -2546,7 +2700,7 @@ textarea:focus {
     background:#fff;
     border:1px solid #ccc;
     border-radius:4px;
-    width:300px;
+    width:200px;
 }
 .dropdown-menu>li>a {
     color:#428bca;
@@ -2555,7 +2709,7 @@ textarea:focus {
     border-radius:4px;
     box-shadow: 15px, 15px, 10px, 10px;
     margin-top:20px;
-    width:300px;
+    width:200px;
 }
 .dropdown ul.dropdown-menu:before {
     content: "";
@@ -2594,7 +2748,71 @@ color: #333 ;
 .content-box {
   width:100%;
   top: 0;
-  padding: 15px;
+  padding: 10px 30px 20px 10px;
   border: 1px solid #ddd;
   box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.075);
+}
+
+/* Search */
+.container { margin-top: 20px; }
+.mb20 { margin-bottom: 20px; text-align: center;}
+.mb20 h1 {
+  font-size: 30px;
+  font-weight: 300;
+  white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 30px;
+}
+
+hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
+hgroup h1 { font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin-top: 0; line-height: 1.15; }
+hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin: 0; padding-bottom: 10px; }
+
+.search-result .thumbnail { border-radius: 0 !important; }
+.search-result:first-child { margin-top: 0 !important; }
+.search-result { margin-top: 20px; }
+.search-result .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
+.search-result ul { padding-left: 0px !important; list-style: none;  }
+.search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
+.search-result ul li i { padding-right: 5px; }
+.search-result .col-md-7 { position: relative; }
+.search-result h1 {
+    font-size: 24px;
+    text-transform: capitalize;
+}
+.search-result span.username {
+    font-size: 12px;
+    color: #248dc1;
+    text-transform:capitalize;
+}
+.s-loc {
+    text-transform: uppercase;
+}
+.s-city, .s-country{
+    text-transform: capitalize;
+}
+
+.search-result p { color: #888;}
+.search-result span.plus { position: absolute; right: 0; top: 126px; }
+.search-result span.plus a { background-color: #248dc1; padding: 5px 5px 3px 5px; color: #fff; padding-right:10px; padding-left:10px; }
+.search-result span.plus a:hover { background-color: #414141; }
+.search-result span.plus a i { color: #fff !important; }
+.search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
+.search-result div.user_contact_line {position:absolute; left:10px;top:126px; color:gray;}
+
+.search-result button.plus {
+    position: absolute !important;
+    right: 0 !important;
+    top: 126px;
+
+}
+
+.modal {
+    position: fixed;
+    top: 35% !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modal {
+    overflow-y: auto;
 }

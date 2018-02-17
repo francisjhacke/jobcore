@@ -1,5 +1,17 @@
 <?php
 
+function getIP() {
+      foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+         if (array_key_exists($key, $_SERVER) === true) {
+            foreach (explode(',', $_SERVER[$key]) as $ip) {
+               if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+                  return $ip;
+               }
+            }
+         }
+      }
+   }
+
 /* MapQuest - geocoding */
 class geocoding {
 
@@ -40,21 +52,16 @@ class geocoding {
       return $response;
   }
 
+
   public static function getNearbyCitiesByIP() {
-     /*foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
-        if (array_key_exists($key, $_SERVER) === true) {
-           foreach (explode(',', $_SERVER[$key]) as $ip) {
-              if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
-                 $valid = true;
-              }
-              else { $valid = false;}
-           }
-        }
-    }*/
-    $valid = true;
-    $ip = "192.197.54.136";
+     //$ip = getIP();
+     $ip = "192.197.54.136";
+     if ($ip){
+         $valid = true;
+     }
+     else { $valid = false; }
      if ($valid){
-         $tags=json_decode(file_get_contents('http://getnearbycities.geobytes.com/GetNearbyCities?radius=100&locationcode='. $ip), true);
+         $tags=json_decode(file_get_contents('http://getnearbycities.geobytes.com/GetNearbyCities?radius=100&limit=30&locationcode='. $ip), true);
          foreach ($tags as $i => $city){
              $cities[$i] = $city[1];
          }

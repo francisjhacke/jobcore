@@ -4,10 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <meta name="description" content="Jobcore is the best place to connect to your community by pursuing or creating opportunities for everyone in your region.">
+    <meta name="author" content="Francis Hasckenberger">
 
+    <meta name="google-site-verification" content="FIxZoWeijGYzh06SGH_73nLsD0mabuUs2RMFrJhguaI" />
+
+
+    <!-- Facebook cards -->
+    <meta property="og:title" content="Jobcore">
+    <meta property="og:url" content="http://www.jobcore.ca">
+    <meta property="og:type" content="business.business">
+    <meta property="og:image" content="http://www.jobcore.ca">
+    <meta property="og:description" content="Jobcore is the best place to connect to your community
+                                            by pursuing or creating opportunities for everyone in your region.">
+
+    <!-- Twitter cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jobcore - Connect to your community">
+    <meta name="twitter:description" content="Jobcore is the best place to connect to your community by pursuing or creating opportunities for everyone in your region.">
+    <meta name="twitter:image" content="http://www.jobcore.ca">
+
+
+
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -29,6 +48,7 @@
     <link rel="stylesheet" href="{{URL::asset('fonts/line-icons/line-icons.css')}}" type="text/css">
     <!-- Main Styles -->
     <link rel="stylesheet" href="{{URL::asset('css/main.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{URL::asset('css/dashboard.css')}}" type="text/css">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="{{URL::asset('extras/animate.css')}}" type="text/css">
     <!-- Owl Carousel -->
@@ -41,6 +61,9 @@
     <!-- Bootstrap Select -->
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap-select.min.css')}}">
     <!-- Jquery Date/Time pickers -->
+
+    <!-- Auto complete -->
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
 
 
 
@@ -66,6 +89,18 @@
 
 </head>
 <body>
+
+<div id="loading-screen">
+    <div class="sk-folding-cube">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+</div>
+
+
+
   <!-- Header Section Start -->
 <div class="header">
   <nav class="navbar navbar-default main-navigation" role="navigation">
@@ -91,9 +126,9 @@
             <li><a href="{{ url('/register') }}"><i class="lnr lnr-user"></i> Signup</a></li>
           @else
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h6><span><i class="lnr lnr-enter"></i></span> {{ Auth::user()->name }}</h6></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h6><span><i class="lnr lnr-enter"></i></span> {{ Auth::user()->username }}</h6></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ url('/profile') }}"><i class="lnr lnr-user"></i> Profile</a></li>
+                <li><a href="{{ url('/dashboard') }}"><i class="lnr lnr-user"></i> Dashboard</a></li>
                 <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -179,19 +214,26 @@ FOOTER
          <p>Jobcore 2017</p>
        </div>
        <div class="bottom-social-icons social-icon pull-right">
-         <a class="facebook" target="_blank" href="https://web.facebook.com/GrayGrids"><i class="fa fa-facebook"></i></a>
-         <a class="twitter" target="_blank" href="https://twitter.com/GrayGrids"><i class="fa fa-twitter"></i></a>
-         <a class="dribble" target="_blank" href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a>
-         <a class="flickr" target="_blank" href="https://www.flickr.com/"><i class="fa fa-flickr"></i></a>
-         <a class="youtube" target="_blank" href="https://youtube.com"><i class="fa fa-youtube"></i></a>
-         <a class="google-plus" target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a>
-         <a class="linkedin" target="_blank" href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+         <a class="facebook" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-facebook"></i></a>
+         <a class="twitter" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-twitter"></i></a>
+         <a class="dribble" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-dribbble"></i></a>
+         <a class="flickr" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-flickr"></i></a>
+         <a class="youtube" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-youtube"></i></a>
+         <a class="google-plus" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-google-plus"></i></a>
+         <a class="linkedin" target="_blank" href="https://www.linkedin.com/in/francis-hackenberger-13212b10a"><i class="fa fa-linkedin"></i></a>
        </div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Copyright End -->
+<script>
+$(window).load(function() {
+  $("#loading-spinner").fadeOut();
+  $('#loading-screen').delay(100).fadeOut('slow');
+  $('body').delay(100).css({'overflow':'visible'});
+});
+</script>
 
 </footer>
 <!-- Footer Section End -->
@@ -214,6 +256,9 @@ FOOTER
    <script type="text/javascript" src="{{URL::asset('js/waypoints.min.js')}}"></script>
    <script type="text/javascript" src="{{URL::asset('js/jasny-bootstrap.min.js')}}"></script>
    <script type="text/javascript" src="{{URL::asset('js/bootstrap-select.min.js')}}"></script>
+   <script type="text/javascript" src="{{URL::asset('js/dashboard.js')}}"></script>
+   <script type="text/javascript" src="{{URL::asset('js/geobytes.js')}}"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
 
 </body>

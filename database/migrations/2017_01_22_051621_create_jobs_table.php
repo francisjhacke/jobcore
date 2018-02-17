@@ -26,7 +26,10 @@ class CreateJobsTable extends Migration
           $table->date('booked_date');
           $table->time('booked_time');
           $table->decimal('pay',7,2);
-          $table->string('address');
+          $table->string('city');
+          $table->string('prov_state');
+          $table->string('country');
+          $table->string('status');
           $table->rememberToken();
           $table->timestamps();
         });

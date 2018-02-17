@@ -20,11 +20,12 @@
                     @foreach ($jobs as $job)
                         <tr>
                             <td>{{$job->title}}</td>
-                            <td>{{$job->address}}</td>
+                            <td>{{$job->city}}</td>
                             <td>{{$job->category_id}}</td>
                             <td>$ {{$job->pay}}</td>
                         </tr>
                     @endforeach
+                    {!! $jobs->render() !!}
                 </tbody>
             </table>
 
