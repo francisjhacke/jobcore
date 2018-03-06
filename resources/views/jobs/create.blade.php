@@ -7,7 +7,7 @@
     //$myIpinfo = new geoplugin;
     //$details = $myIpinfo->locationInfo();
     //$loadCity = $details->geoplugin_city;
-   //$loadRegion = $details->geoplugin_region;
+    //$loadRegion = $details->geoplugin_region;
 
     // Get Latitude and Longitude based on city+region found
     //$myLongLat = new geocoding;
@@ -54,7 +54,7 @@
                 <!-- Title text area-->
                 <div class="features-box wow fadeInDownQuick" data-wow-delay="0.4s">
                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                        <i class="icon fa fa-certificate"></i> <label for="title"> Title</label>
+                        <i class="icon fa fa-certificate"></i> <label for="title"> Job Title</label>
                         <input id="title" type="text" class="form-control" name="title" placeholder="Shovel my driveway" placeholder='&#xf054; Title' value="{{ old('title') }}" required autofocus>
                         @if ($errors->has('title'))
                             <span class="help-block">
@@ -71,7 +71,7 @@
                 <!-- Description text area -->
                 <div class="features-box wow fadeInDownQuick" data-wow-delay="0.6s">
                     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                        <i class="icon fa fa-commenting-o"></i> <label for="description"> Description</label>
+                        <i class="icon fa fa-commenting-o"></i> <label for="description"> Details</label>
                         <textarea id="description" name="description" class="form-control" rows="3" value="{{old('description')}}" placeholder="The most detailed description ever created..." required></textarea>
                         @if ($errors->has('description'))
                             <span class="help-block">
@@ -88,7 +88,7 @@
                     <!-- Pay text area-->
                 <div class="features-box wow fadeInDownQuick" data-wow-delay="0.8s">
                     <div class="form-group{{ $errors->has('pay') ? ' has-error' : '' }}">
-                        <i class="icon fa fa-money"></i> <label for="pay"> Payment</label>
+                        <i class="icon fa fa-money"></i> <label for="pay"> Payment Amount ($)</label>
                         <input id="pay" type="text" class="form-control" placeholder="20.00" name="pay" value="{{ old('pay') }}" required autofocus>
                         @if ($errors->has('pay'))
                             <span class="help-block">

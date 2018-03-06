@@ -103,7 +103,6 @@
                           </div>
                       </div>
                   </div>
-                  <!--<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i> Contact</a></span>-->
         		</div>
             </div>
     		<span class="clearfix borda"></span>
